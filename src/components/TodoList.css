@@ -1,0 +1,23 @@
+.list {
+    display: flex;
+    width: 140px;
+    list-style-type: none;
+    flex-direction: column;
+    border-right: 1px solid silver;
+}
+
+.list__items {
+    display: flex;
+    list-style-type: none;
+    padding: 10px 0 0 0;
+    gap: 20px;
+    flex-direction: column;
+    margin: 0 0 0 10px;
+}
+
+.list__input {
+    background-color: darkgrey;
+    width: calc(100% - 10px);
+    outline: none;
+    border-radius: 6px;
+}
