@@ -2,7 +2,13 @@ import TodoItem from './TodoItem';
 
 import './TodoList.css';
 
-const TodoList = ({ todoItems, onItemClick, searchedItem, onSearch }) => {
+const TodoList = ({
+    todoItems,
+    onItemClick,
+    searchedItem,
+    onSearch,
+    selectedItem,
+}) => {
     return (
         <div className="list">
             <input
@@ -17,6 +23,7 @@ const TodoList = ({ todoItems, onItemClick, searchedItem, onSearch }) => {
                         key={item.id}
                         {...item}
                         onItemClick={onItemClick}
+                        selectedItem={selectedItem}
                     />
                 ))}
             </ul>

@@ -91,6 +91,7 @@ const App = () => {
                 searchedItem={searchedItem}
                 onItemClick={selectItem}
                 onSearch={searchItem}
+                selectedItem={selectedItem}
             />
             <TodoMenu
                 selectedItem={selectedItem}

@@ -4,3 +4,7 @@
     white-space: nowrap;
     cursor: pointer;
 }
+
+.list__item_active {
+    background-color: rgba(246, 242, 237, 0.168);
+}
