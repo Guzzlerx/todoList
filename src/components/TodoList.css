@@ -4,6 +4,7 @@
     list-style-type: none;
     flex-direction: column;
     border-right: 1px solid silver;
+    overflow: scroll;
 }
 
 .list__items {

@@ -20,7 +20,7 @@ function filterItems(searchText, listOfItems) {
 
 const App = () => {
     const [todoItems, setTodoItems] = useState(defaultTodoItems);
-    const [selectedItem, setSelectedItem] = useState('Выберите дело из списка');
+    const [selectedItem, setSelectedItem] = useState('Выберите дело из списка'); // стэйт отображаемого дела
     const [searchedItem, setSearchedItem] = useState(''); // стэйт инпута поиска
     const [editInputValue, setEditInputValue] = useState(''); // стэйт инпута редактирования
     const [addInputValue, setAddInputValue] = useState(''); // стэйт инпута добавления
@@ -47,11 +47,12 @@ const App = () => {
     }
 
     function editItem(id) {
-        // Ищем дело в массиве, если нашли, то меняем название на новое из инпута
+        // Валидация на отсутствие пустого заголовка
         if (!editInputValue) {
             return;
         }
 
+        // Ищем дело в массиве, если нашли, то меняем название на новое из инпута
         const editedItems = todoItems.map((item) => {
             if (item.id === id) {
                 item.title = editInputValue;
@@ -66,7 +67,7 @@ const App = () => {
 
     function addItem(e) {
         e.preventDefault();
-        // Добавляем новое дело, если инпут не пустой
+        // Добавляем новое дело, если инпут с title не пустой
         if (addInputValue) {
             setTodoItems((state) => [
                 ...state,
