@@ -3,7 +3,7 @@
 }
 
 .menu__item {
-    margin: 20px 20px 80px 20px;
+    margin: 20px 20px 60px 20px;
     align-items: center;
 }
 
@@ -19,4 +19,20 @@
 .menu__item-input {
     height: 20px;
     margin-left: 10px;
+}
+
+.menu__radio {
+    display: flex;
+    margin-top: 30px;
+    font-size: 14px;
+    justify-content: space-evenly;
+    font-weight: bold;
+}
+
+.menu__radio_waiting {
+    color: rgb(81, 177, 198);
+}
+
+.menu__radio_completed {
+    color: rgb(57, 255, 47);
 }

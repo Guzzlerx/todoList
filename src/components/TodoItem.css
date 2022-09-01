@@ -8,3 +8,11 @@
 .list__item_active {
     background-color: rgba(246, 242, 237, 0.168);
 }
+
+.list__item_inprocess {
+    color: aqua;
+}
+
+.list__item_completed {
+    color: green;
+}

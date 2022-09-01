@@ -8,6 +8,7 @@ const TodoList = ({
     searchedItem,
     onSearch,
     selectedItem,
+    todoStatus,
 }) => {
     return (
         <div className="list">
@@ -24,6 +25,7 @@ const TodoList = ({
                         {...item}
                         onItemClick={onItemClick}
                         selectedItem={selectedItem}
+                        todoStatus={todoStatus}
                     />
                 ))}
             </ul>

@@ -78,6 +78,17 @@ const App = () => {
         setAddInputValue('');
     }
 
+    function setItemStatus(id, value) {
+        const editedTodoItems = todoItems.map((item) => {
+            if (item.id === id) {
+                item.status = value;
+            }
+            return item;
+        });
+
+        setTodoItems(editedTodoItems);
+    }
+
     useEffect(() => {
         // При изменении зависимости вызываем функцию filterItems
         const filteredItems = filterItems(searchedItem, defaultTodoItems);
@@ -103,6 +114,7 @@ const App = () => {
                 onAddClick={addItem}
                 addInputValue={addInputValue}
                 onAddInput={setAddInputValue}
+                onCheckboxClick={setItemStatus}
             />
         </div>
     );
