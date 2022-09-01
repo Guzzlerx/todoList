@@ -71,7 +71,7 @@ const App = () => {
         if (addInputValue) {
             setTodoItems((state) => [
                 ...state,
-                { id: randomizeId(), title: addInputValue },
+                {id: randomizeId(), status: 'waiting', title: addInputValue},
             ]);
         }
         // Очищаем инпут
@@ -79,6 +79,7 @@ const App = () => {
     }
 
     function setItemStatus(id, value) {
+        // при клике по чекбоксу меняем статус дела в массиве дел
         const editedTodoItems = todoItems.map((item) => {
             if (item.id === id) {
                 item.status = value;

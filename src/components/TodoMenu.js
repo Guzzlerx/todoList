@@ -1,4 +1,5 @@
 import './TodoMenu.css';
+import './TodoItem.css';
 
 const TodoMenu = ({
     selectedItem,
@@ -9,7 +10,6 @@ const TodoMenu = ({
     onAddClick,
     addInputValue,
     onAddInput,
-    todoStatus,
     onCheckboxClick,
 }) => {
     // Если ничего не выбрано, то показывать текст по умолчанию
@@ -46,7 +46,9 @@ const TodoMenu = ({
     return (
         <div className="menu">
             <div className="menu__item">
-                <h3 className="menu__item-title">{title}</h3>
+                <h3 className={`menu__item-title list__item_${status}`}>
+                    {title}
+                </h3>
                 {selectedItem.title && (
                     // Рендерить кнопки, если только дело выбрано
                     <>

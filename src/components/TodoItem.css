@@ -10,9 +10,9 @@
 }
 
 .list__item_inprocess {
-    color: aqua;
+    color: rgb(81, 177, 198);
 }
 
 .list__item_completed {
-    color: green;
+    color: rgb(57, 255, 47);
 }

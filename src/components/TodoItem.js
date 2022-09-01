@@ -1,6 +1,6 @@
 import './TodoItem.css';
 
-const TodoItem = ({ id, title, onItemClick, selectedItem }) => {
+const TodoItem = ({ id, status, title, onItemClick, selectedItem }) => {
     const isSelected = selectedItem.id === id;
 
     function handleClick() {
@@ -10,7 +10,11 @@ const TodoItem = ({ id, title, onItemClick, selectedItem }) => {
     return (
         <li
             onClick={handleClick}
-            className={`list__item ${isSelected ? 'list__item_active' : ''}`}
+            // Если кликнут, то добавляем класс active
+            // в зависимости от статуса добавляем доп.класс для цвета
+            className={`list__item ${
+                isSelected ? 'list__item_active' : ''
+            } list__item_${status}`}
         >
             {title}
         </li>
