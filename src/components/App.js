@@ -20,10 +20,8 @@ function filterItems(searchText, listOfItems) {
 
 const App = () => {
     const [todoItems, setTodoItems] = useState(defaultTodoItems);
-    const [selectedItem, setSelectedItem] = useState('Выберите дело из списка'); // стэйт отображаемого дела
+    const [selectedItem, setSelectedItem] = useState(''); // стэйт отображаемого дела
     const [searchedItem, setSearchedItem] = useState(''); // стэйт инпута поиска
-    const [editInputValue, setEditInputValue] = useState(''); // стэйт инпута редактирования
-    const [addInputValue, setAddInputValue] = useState(''); // стэйт инпута добавления
 
     function selectItem(id) {
         // При клике сюда приходит id, фильтруем массив дел и рендерим дело в меню
@@ -46,36 +44,31 @@ const App = () => {
         setSelectedItem('');
     }
 
-    function editItem(id) {
+    function editItem(id, title) {
         // Валидация на отсутствие пустого заголовка
-        if (!editInputValue) {
+        if (!title) {
             return;
         }
 
         // Ищем дело в массиве, если нашли, то меняем название на новое из инпута
         const editedItems = todoItems.map((item) => {
             if (item.id === id) {
-                item.title = editInputValue;
+                item.title = title;
             }
             return item;
         });
 
         setTodoItems(editedItems);
-        // Очищаем инпут после изменений
-        setEditInputValue('');
     }
 
-    function addItem(e) {
-        e.preventDefault();
+    function addItem(title) {
         // Добавляем новое дело, если инпут с title не пустой
-        if (addInputValue) {
+        if (title) {
             setTodoItems((state) => [
                 ...state,
-                {id: randomizeId(), status: 'waiting', title: addInputValue},
+                {id: randomizeId(), status: 'waiting', title},
             ]);
         }
-        // Очищаем инпут
-        setAddInputValue('');
     }
 
     function setItemStatus(id, value) {
@@ -109,12 +102,8 @@ const App = () => {
             <TodoMenu
                 selectedItem={selectedItem}
                 onDeleteClick={deleteItem}
-                editInputValue={editInputValue}
-                onEditInput={setEditInputValue}
                 onEditClick={editItem}
                 onAddClick={addItem}
-                addInputValue={addInputValue}
-                onAddInput={setAddInputValue}
                 onCheckboxClick={setItemStatus}
             />
         </div>

@@ -1,20 +1,21 @@
+import { useEffect, useState } from 'react';
+
 import './TodoMenu.css';
 import './TodoItem.css';
 
 const TodoMenu = ({
     selectedItem,
     onDeleteClick,
-    editInputValue,
-    onEditInput,
     onEditClick,
     onAddClick,
-    addInputValue,
-    onAddInput,
     onCheckboxClick,
 }) => {
+	const [editItemInput, setEditItemInput] = useState('');
+	const [addItemInput, setAddItemInput] = useState('');
+
     // Если ничего не выбрано, то показывать текст по умолчанию
-    const title = selectedItem.title || 'Выберите дело из списка';
-    const { id, status } = selectedItem;
+    const { id, status, title = 'Выберите дело из списка' } = selectedItem;
+	const isItemSelected = title !== 'Выберите дело из списка';
 
     function handleDeleteClick(e) {
         e.preventDefault();
@@ -24,24 +25,37 @@ const TodoMenu = ({
 
     function handleEditInput(e) {
         // Меняем стэйт при изменении инпута
-        onEditInput(e.target.value);
+		setEditItemInput(e.target.value);
     }
 
-    function handleEditButton(e) {
+    function handleEditButtonClick(e) {
         // Убираем стандартное поведение браузера и отдаем айдишник выше
         e.preventDefault();
 
-        onEditClick(id);
+        onEditClick(id, editItemInput);
     }
 
     function handleAddInput(e) {
         // Меняем стэйт при изменении инпута
-        onAddInput(e.target.value);
+        setAddItemInput(e.target.value);
+    }
+
+	function handleAddButtonClick(e) {
+        // Убираем стандартное поведение браузера и отдаем айдишник выше
+        e.preventDefault();
+
+        onAddClick(addItemInput);
+		// Очищаем инпут
+		setAddItemInput('');
     }
 
     function handleCheckboxClick(e) {
         onCheckboxClick(id, e.target.value);
     }
+
+	useEffect(() => {
+		setEditItemInput(title);
+	}, [title])
 
     return (
         <div className="menu">
@@ -49,19 +63,18 @@ const TodoMenu = ({
                 <h3 className={`menu__item-title list__item_${status}`}>
                     {title}
                 </h3>
-                {selectedItem.title && (
-                    // Рендерить кнопки, если только дело выбрано
+                { // Рендерить форму, если только дело выбрано
+				isItemSelected && (
                     <>
                         <form className="menu__form">
                             <input
-                                placeholder={selectedItem.title}
-                                value={editInputValue}
+                                value={editItemInput}
                                 onInput={handleEditInput}
                             />
                             <button
                                 name="btn-edit"
                                 className="menu__item-input"
-                                onClick={handleEditButton}
+                                onClick={handleEditButtonClick}
                             >
                                 Редактировать
                             </button>
@@ -113,12 +126,12 @@ const TodoMenu = ({
                 <h3 className="menu__item-title">Добавить новое дело</h3>
                 <form className="menu__form">
                     <input
-                        value={addInputValue}
+                        value={addItemInput}
                         onInput={handleAddInput}
                         placeholder="Позвонить в банк"
                     />
                     <button
-                        onClick={onAddClick}
+                        onClick={handleAddButtonClick}
                         name="btn-add"
                         type="submit"
                         className="menu__item-input"
