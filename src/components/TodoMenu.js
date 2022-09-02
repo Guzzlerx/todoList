@@ -10,12 +10,12 @@ const TodoMenu = ({
     onAddClick,
     onCheckboxClick,
 }) => {
-	const [editItemInput, setEditItemInput] = useState('');
-	const [addItemInput, setAddItemInput] = useState('');
+    const [editItemInput, setEditItemInput] = useState('');
+    const [addItemInput, setAddItemInput] = useState('');
 
     // Если ничего не выбрано, то показывать текст по умолчанию
     const { id, status, title = 'Выберите дело из списка' } = selectedItem;
-	const isItemSelected = title !== 'Выберите дело из списка';
+    const isItemSelected = title !== 'Выберите дело из списка';
 
     function handleDeleteClick(e) {
         e.preventDefault();
@@ -25,7 +25,7 @@ const TodoMenu = ({
 
     function handleEditInput(e) {
         // Меняем стэйт при изменении инпута
-		setEditItemInput(e.target.value);
+        setEditItemInput(e.target.value);
     }
 
     function handleEditButtonClick(e) {
@@ -40,22 +40,22 @@ const TodoMenu = ({
         setAddItemInput(e.target.value);
     }
 
-	function handleAddButtonClick(e) {
+    function handleAddButtonClick(e) {
         // Убираем стандартное поведение браузера и отдаем айдишник выше
         e.preventDefault();
 
         onAddClick(addItemInput);
-		// Очищаем инпут
-		setAddItemInput('');
+        // Очищаем инпут
+        setAddItemInput('');
     }
 
     function handleCheckboxClick(e) {
         onCheckboxClick(id, e.target.value);
     }
 
-	useEffect(() => {
-		setEditItemInput(title);
-	}, [title])
+    useEffect(() => {
+        setEditItemInput(title);
+    }, [title]);
 
     return (
         <div className="menu">
@@ -63,63 +63,65 @@ const TodoMenu = ({
                 <h3 className={`menu__item-title list__item_${status}`}>
                     {title}
                 </h3>
-                { // Рендерить форму, если только дело выбрано
-				isItemSelected && (
-                    <>
-                        <form className="menu__form">
-                            <input
-                                value={editItemInput}
-                                onInput={handleEditInput}
-                            />
-                            <button
-                                name="btn-edit"
-                                className="menu__item-input"
-                                onClick={handleEditButtonClick}
-                            >
-                                Редактировать
-                            </button>
-                            <button
-                                onClick={handleDeleteClick}
-                                name="btn-delete"
-                                className="menu__item-input"
-                            >
-                                Удалить
-                            </button>
-                        </form>
-                        <div className="menu__radio">
-                            <label>
+                {
+                    // Рендерить форму, если только дело выбрано
+                    isItemSelected && (
+                        <>
+                            <form className="menu__form">
                                 <input
-                                    name="todo-status"
-                                    type="radio"
-                                    value="waiting"
-                                    checked={status === 'waiting'}
-                                    onChange={handleCheckboxClick}
+                                    value={editItemInput}
+                                    onInput={handleEditInput}
                                 />
-                                Ожидает
-                            </label>
-                            <label className="menu__radio_waiting">
-                                <input
-                                    name="todo-status"
-                                    type="radio"
-                                    value="inprocess"
-                                    checked={status === 'inprocess'}
-                                    onChange={handleCheckboxClick}
-                                />
-                                В процессе
-                            </label>
-                            <label className="menu__radio_completed">
-                                <input
-                                    name="todo-status"
-                                    type="radio"
-                                    value="completed"
-                                    checked={status === 'completed'}
-                                    onChange={handleCheckboxClick}
-                                />
-                                Выполнена
-                            </label>
-                        </div>
-                    </>
-                )}
+                                <button
+                                    name="btn-edit"
+                                    className="menu__item-input"
+                                    onClick={handleEditButtonClick}
+                                >
+                                    Редактировать
+                                </button>
+                                <button
+                                    onClick={handleDeleteClick}
+                                    name="btn-delete"
+                                    className="menu__item-input"
+                                >
+                                    Удалить
+                                </button>
+                            </form>
+                            <div className="menu__radio">
+                                <label>
+                                    <input
+                                        name="todo-status"
+                                        type="radio"
+                                        value="waiting"
+                                        checked={status === 'waiting'}
+                                        onChange={handleCheckboxClick}
+                                    />
+                                    Ожидает
+                                </label>
+                                <label className="menu__radio_waiting">
+                                    <input
+                                        name="todo-status"
+                                        type="radio"
+                                        value="inprocess"
+                                        checked={status === 'inprocess'}
+                                        onChange={handleCheckboxClick}
+                                    />
+                                    В процессе
+                                </label>
+                                <label className="menu__radio_completed">
+                                    <input
+                                        name="todo-status"
+                                        type="radio"
+                                        value="completed"
+                                        checked={status === 'completed'}
+                                        onChange={handleCheckboxClick}
+                                    />
+                                    Выполнена
+                                </label>
+                            </div>
+                        </>
+                    )
+                }
             </div>
             <hr />
             <div className="menu__item">
