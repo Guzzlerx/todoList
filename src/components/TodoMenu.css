@@ -16,9 +16,36 @@
     text-align: center;
 }
 
-.menu__item-input {
-    height: 20px;
+.menu__item-btn {
+    height: 35px;
+    width: 110px;
     margin-left: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.menu__item-btn:hover {
+    opacity: 0.7;
+}
+
+.menu__item-btn_type_create {
+    background-color: rgb(0, 166, 255);
+}
+
+.menu__item-btn_type_edit {
+    background-color: rgb(234 242 28);
+}
+
+.menu__item-btn_type_remove {
+    background-color: rgb(235, 11, 11);
+}
+
+.menu__item-input {
+    outline-color: gray;
+    border-radius: 6px;
+    border: none;
 }
 
 .menu__radio {
@@ -30,7 +57,7 @@
 }
 
 .menu__radio_waiting {
-    color: rgb(81, 177, 198);
+    color: rgb(0, 166, 255);
 }
 
 .menu__radio_completed {

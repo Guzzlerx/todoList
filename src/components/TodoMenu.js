@@ -69,12 +69,13 @@ const TodoMenu = ({
                         <>
                             <form className="menu__form">
                                 <input
+                                    className="menu__item-input"
                                     value={editItemInput}
                                     onInput={handleEditInput}
                                 />
                                 <button
                                     name="btn-edit"
-                                    className="menu__item-input"
+                                    className="menu__item-btn menu__item-btn_type_edit"
                                     onClick={handleEditButtonClick}
                                 >
                                     Редактировать
@@ -82,7 +83,7 @@ const TodoMenu = ({
                                 <button
                                     onClick={handleDeleteClick}
                                     name="btn-delete"
-                                    className="menu__item-input"
+                                    className="menu__item-btn menu__item-btn_type_remove"
                                 >
                                     Удалить
                                 </button>
@@ -128,6 +129,7 @@ const TodoMenu = ({
                 <h3 className="menu__item-title">Добавить новое дело</h3>
                 <form className="menu__form">
                     <input
+                        className="menu__item-input"
                         value={addItemInput}
                         onInput={handleAddInput}
                         placeholder="Позвонить в банк"
@@ -136,7 +138,7 @@ const TodoMenu = ({
                         onClick={handleAddButtonClick}
                         name="btn-add"
                         type="submit"
-                        className="menu__item-input"
+                        className="menu__item-btn menu__item-btn_type_create"
                     >
                         Создать
                     </button>

@@ -17,8 +17,16 @@
 }
 
 .list__input {
-    background-color: darkgrey;
     width: calc(100% - 10px);
-    outline: none;
+    border: none;
     border-radius: 6px;
+    height: 20px;
+    align-self: center;
+    outline: none;
+    opacity: 0.4;
+    transition: opacity ease-out 0.2s;
+}
+
+.list__input:focus {
+    opacity: 1;
 }

@@ -66,7 +66,7 @@ const App = () => {
         if (title) {
             setTodoItems((state) => [
                 ...state,
-                {id: randomizeId(), status: 'waiting', title},
+                { id: randomizeId(), status: 'waiting', title },
             ]);
         }
     }
